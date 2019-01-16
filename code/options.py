@@ -91,6 +91,9 @@ def load_arguments():
     argparser.add_argument('--n_filters',
             type=int,
             default=128)
+    argparser.add_argument('--debug',
+            type=bool,
+            default=False)
 
     args = argparser.parse_args()
 
@@ -100,3 +103,7 @@ def load_arguments():
     print('------------------------------------------------')
 
     return args
+if __name__ == "__main__":
+    print("Options selected:")
+    args = load_arguments()
+    print(args)

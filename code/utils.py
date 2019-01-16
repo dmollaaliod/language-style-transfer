@@ -2,6 +2,11 @@ import numpy as np
 import random
 
 def strip_eos(sents):
+    """Remove <eos> from the sentences
+    >>> sents=["sent 1 <eos> yes", "sent 2 <eos>"]
+    >>> strip_eos(sents)
+    ['sent 1 ', 'sent 2 ']
+    """
     return [sent[:sent.index('<eos>')] if '<eos>' in sent else sent
         for sent in sents]
 
@@ -26,7 +31,13 @@ def makeup(_x, n):
     return x
 
 def reorder(order, _x):
-    x = range(len(_x))
+    """Return a list sorted according to the order specified
+    >>> reorder([1,0,3,2],['a','b','c','d'])
+    ['b', 'a', 'd', 'c']
+    >>> reorder(range(4), ['a','b','c','d'])
+    ['a', 'b', 'c', 'd']
+    """
+    x = list(range(len(_x)))
     for i, a in zip(order, _x):
         x[i] = a
     return x
@@ -93,3 +104,7 @@ def get_batches(x0, x1, word2id, batch_size, noisy=False):
         s = t
 
     return batches, order0, order1
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()

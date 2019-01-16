@@ -250,6 +250,12 @@ if __name__ == '__main__':
             #gradients = Accumulator(args.steps_per_checkpoint,
             #    ['|grad_rec|', '|grad_adv|', '|grad|'])
 
+            if args.debug:
+                print("Debugging: reducing epochs from %i to 1 and batches from %i to 2" % (args.max_epochs,
+                                                                                            len(batches)))
+                epochs = 1
+                batches = batches[:2]
+
             for epoch in range(1, 1+args.max_epochs):
                 print('--------------------epoch %d--------------------' % epoch)
                 print('learning_rate:', learning_rate, '  gamma:', gamma)
